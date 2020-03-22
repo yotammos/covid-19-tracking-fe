@@ -1,8 +1,29 @@
-export async function getData(url: string) {
-  const res = await fetch(url)
-  const myJson = await res.json()
-  // console.log(JSON.stringify(myJson))
-  return myJson
+export async function getData(request: DetailedRequest | DirectRequest) {
+  return ('url' in request)
+      ? getDataBasedOnUrl(request)
+      : getDataBasedOnPath(request.path, request.host, request.useTls, request.port)
+}
+
+export interface DirectRequest {
+  url: string
+}
+
+export interface DetailedRequest {
+  path: string | undefined
+  host: string | undefined
+  useTls: boolean | undefined
+  port: number | undefined
+}
+
+async function getDataBasedOnUrl(request: DirectRequest) {
+  const res = await fetch(request.url)
+  return await res.json()
+}
+
+async function getDataBasedOnPath(path: string = '/', host: string = 'localhost', useTls: boolean = false, port: number = 8080) {
+  const protocol: string = useTls ? 'https' : 'http'
+  const res = await fetch(`${protocol}://${host}:${port}${path}`)
+  return  await res.json()
 }
 
 export async function postData(url: string = '', data = {}) {

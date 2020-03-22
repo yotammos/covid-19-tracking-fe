@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { getData } from '../utils/restClient'
+import {DetailedRequest, getData} from '../utils/restClient'
 import CountryData from '../models/CountryData'
 import StyledTd from '../models/styled/StyledTd'
 import StyledTr from '../models/styled/StyledTr'
@@ -8,11 +8,13 @@ import { formatAmount } from '../utils/formatting'
 import { buildStyledTable } from '../utils/table'
 import {DATA_COUNT, PATHS} from '../utils/constants'
 import styled from 'styled-components'
+import { useState } from "react"
+import { useEffect } from "react"
 
 interface Props {}  
 
 interface State {
-    data?: Array<CountryData>
+    data?: CountryData[]
 }
 
 const availableCountries = [
@@ -26,11 +28,9 @@ const availableCountries = [
 ]
 
 const buildPossibleLink = (name: string) => {
-    if (availableCountries.includes(name)) {
-        return <StyledLink to={`${PATHS.COUNTRY}/${name}`}>{name}</StyledLink>
-    } else {
-        return <div>{name}</div>
-    }
+    return name in availableCountries
+        ? <StyledLink to={`${PATHS.COUNTRY}/${name}`}>{name}</StyledLink>
+        : <div>{name}</div>
 }
 
 const buildStyledRow = (data: CountryData, index: number) => <StyledTr key={index + 1}>
@@ -44,27 +44,22 @@ const StyledH1 = styled.h1`
     text-align: center;
 `
 
-export default class Summary extends React.Component<Props, State> {
-    state = {
-        data: []
-    }
+const Summary: React.FC<Props> = (props: Props) => {
+    const [data, setData] = useState([])
 
-    componentDidMount = () => {
-        getData("http://localhost:8080/counts/all").then(value => {
-            this.setState({
-                data: value
+    useEffect(() => {
+        getData({ path: `/counts/all` } as DetailedRequest)
+            .then((value: CountryData[]) => {
+                setData(value)
             })
-        })
-    }
+    })
 
-    buildRows = () => {
-        return this.state.data.map((row, index) => buildStyledRow(row, index))
-    }
+    const buildRows = () => data.map((row, index) => buildStyledRow(row, index))
 
-    render() {
-        return <div>
-            <StyledH1>Summary</StyledH1>
-            {buildStyledTable(['Name', DATA_COUNT.CASES, DATA_COUNT.DEATHS, DATA_COUNT.RECOVERED], this.buildRows)}
-        </div>
-    }
+    return <div>
+        <StyledH1>Summary</StyledH1>
+        {buildStyledTable(['Name', DATA_COUNT.CASES, DATA_COUNT.DEATHS, DATA_COUNT.RECOVERED], buildRows)}
+    </div>
 }
+
+export default Summary

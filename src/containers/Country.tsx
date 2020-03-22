@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { useState, useEffect } from 'react'
 import CountryTimeData from '../models/CountryTimeData'
-import { getData } from '../utils/restClient'
+import {DetailedRequest, getData} from '../utils/restClient'
 import StyledTd from '../models/styled/StyledTd'
 import StyledTr from '../models/styled/StyledTr'
 import {capitalize, formatAmount} from '../utils/formatting'
@@ -53,7 +53,7 @@ const Country: React.FC<Props> = (props: Props) => {
     } as CountryTimeData)
 
     useEffect(() => {
-        getData(`http://localhost:8080/time/${match.params.countryName}`)
+        getData({ path: `/time/${match.params.countryName}` } as DetailedRequest)
             .then((value: CountryTimeData) => {
                 setData(value)
             })
