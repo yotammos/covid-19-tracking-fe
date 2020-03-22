@@ -14,11 +14,11 @@ const Wrapper = styled.section`
   background: papayawhip;
 `
 
-const Styled = () => 
-    <Wrapper>
-        <Title>
+const Styled = () =>
+  <Wrapper>
+    <Title>
             Hello World!
-        </Title>
-    </Wrapper>
+    </Title>
+  </Wrapper>
 
 export default Styled

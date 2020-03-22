@@ -1,4 +1,4 @@
-export default interface AmountTimePair {
+export interface AmountTimePair {
     amount: number
     date: string
 }

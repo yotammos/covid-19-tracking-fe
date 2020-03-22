@@ -5,14 +5,21 @@
   "main": "index.js",
   "scripts": {
     "start": "parcel src/index.html",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "npx eslint --ext .tsx --ext .ts src/ --fix"
   },
+  "pre-commit": [
+    "lint"
+  ],
   "keywords": [],
   "author": "Yotam Mosinzon",
   "license": "ISC",
   "dependencies": {
     "@material-ui/core": "^4.9.7",
+    "eslint-config-prettier": "^6.10.1",
+    "eslint-plugin-prettier": "^3.1.2",
     "material-ui": "^0.20.2",
+    "prettier": "^2.0.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-router-dom": "^5.1.2",
@@ -23,7 +30,17 @@
     "@types/react": "^16.9.14",
     "@types/react-dom": "^16.9.4",
     "@types/styled-components": "^5.0.1",
+    "@typescript-eslint/eslint-plugin": "^2.24.0",
+    "@typescript-eslint/parser": "^2.24.0",
+    "eslint": "^6.8.0",
+    "eslint-config-standard": "^14.1.1",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-node": "^11.0.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-react": "^7.19.0",
+    "eslint-plugin-standard": "^4.0.1",
     "parcel-bundler": "^1.12.4",
+    "pre-commit": "^1.2.2",
     "typescript": "^3.7.2"
   }
 }

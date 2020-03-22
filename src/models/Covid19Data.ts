@@ -1,4 +1,4 @@
-export default interface Covid19Data {
+export interface Covid19Data {
     cases?: number
     deaths?: number
     recovered?: number
