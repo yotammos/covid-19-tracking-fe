@@ -12,10 +12,6 @@ import { useState, useEffect } from 'react'
 
 interface Props {}
 
-interface State {
-    data?: CountryData[]
-}
-
 const availableCountries = [
   'US',
   'China',
@@ -23,11 +19,16 @@ const availableCountries = [
   'Iran',
   'Italy',
   'Germany',
-  'Spain'
+  'Spain',
+  'France',
+  'Korea-South',
+  'Switzerland',
+  'United Kingdom',
+  'Netherlands'
 ]
 
 const buildPossibleLink = (name: string) => {
-  return name in availableCountries
+  return availableCountries.indexOf(name) !== -1
     ? <StyledLink to={`${PATHS.COUNTRY}/${name}`}>{name}</StyledLink>
     : <div>{name}</div>
 }
