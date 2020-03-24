@@ -3,7 +3,8 @@ export const PATHS = {
   COUNTER: '/counter',
   STYLED: '/styled',
   SUMMARY: '/summary',
-  COUNTRY: '/country'
+  COUNTRY: '/country',
+  GLOBAL: '/global'
 }
 
 export const SCALE = {
@@ -14,5 +15,6 @@ export const SCALE = {
 export const DATA_COUNT = {
   DEATHS: 'deaths',
   CASES: 'cases',
-  RECOVERED: 'recovered'
+  RECOVERED: 'recovered',
+  DATE: 'date'
 }

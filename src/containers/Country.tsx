@@ -59,9 +59,7 @@ const Country: React.FC<Props> = (props: Props) => {
       })
   })
 
-  const buildRows = () => {
-    return data.data.map((row, index) => buildStyledRow(row, index))
-  }
+  const buildRows = () => data.data.map((row, index) => buildStyledRow(row, index))
 
   const handleScaleChange = event => {
     event.preventDefault()

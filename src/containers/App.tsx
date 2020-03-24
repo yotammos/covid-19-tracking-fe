@@ -8,26 +8,30 @@ import Summary from './Summary'
 import StyledLi from '../models/styled/StyledLi'
 import StyledUl from '../models/styled/StyledUl'
 import Country from './Country'
+import Global from './Global'
 
 const Home = () => <h2>Home</h2>
 
-const numTabs = 4
+const NUM_TABS = 5
 
 const AppRouter = () =>
   <Router>
     <div>
       <StyledUl>
-        <StyledLi numTabs={numTabs}>
+        <StyledLi numTabs={NUM_TABS}>
           <Link to={PATHS.HOME}>Home</Link>
         </StyledLi>
-        <StyledLi numTabs={numTabs}>
+        <StyledLi numTabs={NUM_TABS}>
           <Link to={PATHS.COUNTER}>Counter Example</Link>
         </StyledLi>
-        <StyledLi numTabs={numTabs}>
+        <StyledLi numTabs={NUM_TABS}>
           <Link to={PATHS.STYLED}>Styled Example</Link>
         </StyledLi>
-        <StyledLi numTabs={numTabs}>
+        <StyledLi numTabs={NUM_TABS}>
           <Link to={PATHS.SUMMARY}>Summary</Link>
+        </StyledLi>
+        <StyledLi numTabs={NUM_TABS}>
+          <Link to={PATHS.GLOBAL}>Global</Link>
         </StyledLi>
       </StyledUl>
 
@@ -36,6 +40,7 @@ const AppRouter = () =>
       <Route path={PATHS.STYLED} component={Styled} />
       <Route path={`${PATHS.COUNTRY}/:countryName`} component={Country}/>
       <Route path={PATHS.SUMMARY} component={Summary} />
+      <Route path={PATHS.GLOBAL} component={Global}/>
     </div>
   </Router>
 

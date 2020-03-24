@@ -6,7 +6,11 @@
   "scripts": {
     "start": "parcel src/index.html",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "npx eslint --ext .tsx --ext .ts src/ --fix"
+    "lint": "npx eslint --ext .tsx --ext .ts src/ --fix",
+    "react:start": "react-scripts start",
+    "react:build": "react-scripts build",
+    "react:test": "react-scripts test",
+    "react:eject": "react-scripts eject"
   },
   "pre-commit": [
     "lint"
@@ -23,6 +27,7 @@
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-router-dom": "^5.1.2",
+    "react-scripts": "3.4.1",
     "recharts": "^1.8.5",
     "styled-components": "^5.0.1"
   },
