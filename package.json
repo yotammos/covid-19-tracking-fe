@@ -7,10 +7,7 @@
     "start": "parcel src/index.html",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "npx eslint --ext .tsx --ext .ts src/ --fix",
-    "react:start": "react-scripts start",
-    "react:build": "react-scripts build",
-    "react:test": "react-scripts test",
-    "react:eject": "react-scripts eject"
+    "build": "parcel build src/index.html"
   },
   "pre-commit": [
     "lint"
